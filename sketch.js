@@ -62,6 +62,7 @@ if(foodS == 0){
 
 
   drawSprites();
+  }
   textSize(17);
   fill("black");
   text("I am your Puppy please feed me I am Hungry ",100,150);
@@ -70,7 +71,4 @@ if(foodS == 0){
   fill("black");
   text("Milk Bottles Remaining  "+foodS,170,440);
 
-  }
-}
-
-
+  
