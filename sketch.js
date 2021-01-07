@@ -4,13 +4,12 @@ var dog1, dogHappy;
 var milk, milkI;
 
 
-function preload()
-{
+function preload(){
+
   dog1 = loadImage("Dog.png");
   Happydog = loadImage("happydog.png");
   milkI = loadImage("milk.png");
-  
-
+ 
 }
 
 function setup() {
@@ -49,17 +48,16 @@ function draw() {
     milk1.visible = true;
 
    
+     }
   }
-
-
 if(foodS == 0){
   
   dog.addImage(dogI);
   foodS = 50;
 
+    }
+
 }
-
-
 
   drawSprites();
  
