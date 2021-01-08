@@ -57,8 +57,6 @@ if(foodS == 0){
 
     }
 
-}
-
   drawSprites();
  
   textSize(17);
