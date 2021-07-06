@@ -1,15 +1,15 @@
+var dog, hDog, database, foodS, foodStock
+var dogImg, hdogImg;
+var milk, milkImg;
 
-var dog, happyDog, database,  foodStock
-var dog1, dogHappy;
-var milk, milkI;
 
+function preload()
+{
+  dogImg = loadImage("dogImg.png");
+  hdogImg = loadImage("dogImg1.png");
+  milkImg = loadImage("milk.gif");
+  
 
-function preload(){
-
-  dog1 = loadImage("Dog.png");
-  Happydog = loadImage("happydog.png");
-  milkI = loadImage("milk.png");
- 
 }
 
 function setup() {
@@ -20,51 +20,75 @@ function setup() {
   dog.addImage(dogImg);
   dog.scale = 0.15;
 
-  emo = createSprite(200,200,1,1);
-  
-  foodstock = database.ref('food');
-  foodstock.on("value",readstock);
-  foodstock.set(50);
+
+  foodStock = database.ref('food');
+  foodStock.on("value",readStock);
+  foodStock.set(50);
   
   milk = createSprite(140,435,10,10);
-  milk.addImage(milkI);
+  milk.addImage(milkImg);
   milk.scale = 0.025;
 
   milk1 = createSprite(210,280,10,10);
-  milk1.addImage(milkI);
+  milk1.addImage(milkImg);
   milk1.scale = 0.025;
   milk1.visible = false;
 
 }
 
-
 function draw() {  
-  background("blue")
+  background("pink")
 
   if(foodS !== 0){
   if(keyWentDown(UP_ARROW)){
     writeStock(foodS);
-    dog.addImage(HappydogI);
+    dog.addImage(hdogImg);
     milk1.visible = true;
 
    
-     }
   }
+
+  if(keyWentUp(UP_ARROW)){
+    writeStock(foodS);
+    dog.addImage(dogImg);
+    milk1.visible = false;
+  }
+}
+
 if(foodS == 0){
   
-  dog.addImage(dogI);
+  dog.addImage(dogImg);
   foodS = 50;
 
-    }
+}
+
+
 
   drawSprites();
- 
   textSize(17);
   fill("black");
-  text("I am your Puppy please feed me I am Hungry ",100,150);
+  text("I am Hungry ",100,150);
   fill("black");
-  text("Long Press up arrow key to feed  Dog ",50,50);
+  text("Press up arrow key to feed ",50,50);
   fill("black");
   text("Milk Bottles Remaining  "+foodS,170,440);
-
 }
+
+function readStock(data)
+{
+  foodS = data.val();
+}
+
+function writeStock(x){
+
+  if(x<=0){
+    x = 0;
+  }else{
+    x=x-1
+  }
+
+  database.ref('/').update({
+    food:x
+  })
+}
+
